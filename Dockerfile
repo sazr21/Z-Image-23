@@ -21,3 +21,4 @@ EXPOSE 7860
 
 # أمر التشغيل (تأكد من أن الملف الرئيسي هو inference.py أو قم بتغييره لملف التشغيل الخاص بك)
 CMD ["python3", "inference.py"]
+ENV DEBIAN_FRONTEND=noninteractive
