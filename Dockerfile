@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 COPY . .
 
 # تثبيت المكتبات المطلوبة (PyTorch والمكتبات الأخرى)
-RUN pip3 install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# تعديل سطر التثبيت ليصبح هكذا
+RUN pip3 install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu121 
 RUN pip3 install --no-cache-dir -r requirements.txt || pip3 install --no-cache-dir gradio diffusers transformers accelerate
 
 # منفذ التشغيل لواجهة المستخدم
@@ -22,3 +23,4 @@ EXPOSE 7860
 # أمر التشغيل (تأكد من أن الملف الرئيسي هو inference.py أو قم بتغييره لملف التشغيل الخاص بك)
 CMD ["python3", "inference.py"]
 ENV DEBIAN_FRONTEND=noninteractive
+ 
