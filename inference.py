@@ -7,7 +7,7 @@ import warnings
 import torch
 
 warnings.filterwarnings("ignore")
- from src.utils.attention import AttentionBackend, set_attention_backend
+from src.utils.attention import AttentionBackend, set_attention_backend
 from src.utils.loader import ensure_model_weights, load_from_local_dir
 from zimage import generate
 
