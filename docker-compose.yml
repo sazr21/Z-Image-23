@@ -1,0 +1,14 @@
+services:
+  z-image:
+    build: .
+    container_name: z_image_app
+    ports:
+      - "7860:7860" # المنفذ الافتراضي لواجهة Gradio
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: always
