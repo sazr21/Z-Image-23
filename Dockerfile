@@ -7,3 +7,4 @@ RUN pip3 install --no-cache-dir gradio diffusers transformers accelerate
 # السطر السحري لحل مشكلة الموديولات المفقودة
 ENV PYTHONPATH=/app
 CMD ["python3", "inference.py"]
+RUN pip3 install --no-cache-dir gradio diffusers transformers accelerate loguru
