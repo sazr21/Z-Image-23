@@ -1,16 +1,21 @@
 version: '3.8'
 
 services:
-  z-image:
+  z-image-app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: z_image_app
+    container_name: z_image_container
     ports:
-      - "7860:7860"
+      - "7860:7860" # ربط منفذ الواجهة (Gradio)
     environment:
-      - DEVICE=cpu
-      - TRANSFORMERS_CACHE=/app/cache
-      - HF_HOME=/app/cache
-    restart: unless-stopped
-    # تم حذف قسم النشر والـ GPU تماماً ليعمل على خادم Hostinger
+      - PORT=7860
+      - ZIMAGE_ATTENTION=math # استخدام Math attention لأنه الأنسب للمعالجات المركزية CPU
+      - TORCH_DEVICE=cpu
+    volumes:
+      - ./ckpts:/app/ckpts # لحفظ أوزان الموديل وتجنب تحميلها في كل مرة
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 8G # تأكد أن السيرفر لديه ذاكرة كافية (RAM)
