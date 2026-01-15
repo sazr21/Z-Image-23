@@ -1,21 +1,21 @@
 version: '3.8'
 
 services:
-  z-image-app:
+  z-image:  # تم تغيير الاسم هنا ليتطابق مع طلب Dokploy
     build:
       context: .
       dockerfile: Dockerfile
     container_name: z_image_container
     ports:
-      - "7860:7860" # ربط منفذ الواجهة (Gradio)
+      - "7860:7860"
     environment:
       - PORT=7860
-      - ZIMAGE_ATTENTION=math # استخدام Math attention لأنه الأنسب للمعالجات المركزية CPU
+      - ZIMAGE_ATTENTION=math
       - TORCH_DEVICE=cpu
     volumes:
-      - ./ckpts:/app/ckpts # لحفظ أوزان الموديل وتجنب تحميلها في كل مرة
+      - ./ckpts:/app/ckpts
     restart: always
     deploy:
       resources:
         limits:
-          memory: 8G # تأكد أن السيرفر لديه ذاكرة كافية (RAM)
+          memory: 8G
